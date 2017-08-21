@@ -21,6 +21,7 @@ namespace VideoAppBLL.Services
             });
             return newVid;
         }
+
         //test 12345
         public Video Delete(int Id)
         {
@@ -31,7 +32,7 @@ namespace VideoAppBLL.Services
 
         public Video Get(int Id)
         {
-           return FakeDB.Videos.FirstOrDefault(x => x.Id == Id);
+            return FakeDB.Videos.FirstOrDefault(x => x.Id == Id);
         }
 
         public List<Video> GetAll()
@@ -41,7 +42,15 @@ namespace VideoAppBLL.Services
 
         public Video Update(Video vid)
         {
-            throw new NotImplementedException();
+            var videoFromDB = Get(vid.Id);
+            if (videoFromDB == null)
+            {
+                throw new InvalidOperationException("Video not found...");
+            }
+            videoFromDB.Title = vid.Title;
+            videoFromDB.Genre = vid.Genre;
+            videoFromDB.Year = videoFromDB.Year;
+            return videoFromDB;
         }
     }
 }
