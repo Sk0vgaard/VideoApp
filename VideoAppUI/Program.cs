@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
+using VideoAppBLL;
 using VideoAppEntity;
 
 namespace VideoAppUI
 {
     class Program
     {
+        static BLLFacade bllFacade = new BLLFacade();
+
+
         static void Main(string[] args)
         {
             var video1 = new Video
             {
-                Id = id++,
                 Title = "Tarzan",
                 Genre = "Eventyr",
                 Year = 2016
             };
-            videos.Add(video1);
+            bllFacade.VideoService.Create(video1);
 
-            videos.Add(new Video()
+            bllFacade.VideoService.Create(new Video()
             {
-                Id = id++,
                 Title = "Baby",
                 Genre = "Drama",
                 Year = 2018
@@ -71,46 +74,47 @@ namespace VideoAppUI
         private static void EditVideo()
         {
             var video = FindVideoById();
-            Console.WriteLine($"Video name: ");
-            video.Title = Console.ReadLine();
-            Console.WriteLine($"Genre name: ");
-            video.Genre = Console.ReadLine();
-            Console.WriteLine($"Year of video: ");
-            video.Year = int.Parse(Console.ReadLine());
+            if (video != null)
+            {
+                Console.WriteLine($"Video name: ");
+                video.Title = Console.ReadLine();
+                Console.WriteLine($"Genre name: ");
+                video.Genre = Console.ReadLine();
+                Console.WriteLine($"Year of video: ");
+                video.Year = int.Parse(Console.ReadLine());
+            }
+            else
+            {
+                Console.WriteLine("Video not found...");
+            }
         }
 
         private static Video FindVideoById()
         {
             Console.WriteLine("\nId for each video:");
-            foreach (var video in videos)
-            {
-                Console.WriteLine($"Id:{video.Id} Title:{video.Title}");
-            }
-            Console.WriteLine("\nChoose the id of the video you wish to edit: ");
+            //foreach (var video in videos)
+            //{
+            //    Console.WriteLine($"Id:{video.Id} Title:{video.Title}");
+            //}
+            //Console.WriteLine("\nChoose the id of the video you wish to edit: ");
             int id;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Please insert a number...");
             }
-
-            foreach (var video in videos)
-            {
-                if (video.Id == id)
-                {
-                    return video;
-                }
-            }
-            return null;
+            return bllFacade.VideoService.Get(id);
         }
 
         private static void DeleteVideo()
         {
             var videoFound = FindVideoById();
-
             if (videoFound != null)
             {
-                videos.Remove(videoFound);
+                bllFacade.VideoService.Delete(videoFound.Id);
             }
+            var response =
+                videoFound == null ? "Video not found..." : "Video has been deleted...";
+            Console.WriteLine(response);
         }
 
         private static void AddVideo()
@@ -124,13 +128,18 @@ namespace VideoAppUI
             Console.WriteLine("Year: ");
             int year = Convert.ToInt32(Console.ReadLine());
 
-
+            bllFacade.VideoService.Create(new Video()
+            {
+                Title = title,
+                Genre = genre,
+                Year = year
+            });
         }
 
         private static void ListOfVideos()
         {
             Console.WriteLine("\nList of videos:\n");
-            foreach (var video in videos)
+            foreach (var video in bllFacade.VideoService.GetAll())
             {
                 Console.WriteLine(
                     $"Id: {video.Id}\nTitle of video: {video.Title}\nGenre: {video.Genre}\nYear: {video.Year}\n");
