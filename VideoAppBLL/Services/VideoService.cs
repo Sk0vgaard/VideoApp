@@ -21,7 +21,7 @@ namespace VideoAppBLL.Services
             });
             return newVid;
         }
-
+        //test
         public Video Delete(int Id)
         {
             var vid = Get(Id);
