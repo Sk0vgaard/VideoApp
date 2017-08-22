@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using VideoAppEntity;
 
-namespace VideoAppBLL
+namespace VideoAppDAL
 {
-    public interface IVideoService
+    public interface IVideoRepository
     {
         //C
         Video Create(Video vid);
@@ -16,7 +16,7 @@ namespace VideoAppBLL
         Video Get(int Id);
 
         //U
-        Video Update(Video vid);
+        //No update for Repository.
 
         //D
         Video Delete(int Id);

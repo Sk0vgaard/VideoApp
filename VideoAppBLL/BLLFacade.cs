@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using VideoAppBLL.Services;
+using VideoAppDAL;
 
 namespace VideoAppBLL
 {
     public class BLLFacade
     {
-        public IVideoService GetvVideoService()
-        {
-            return new VideoService();
-        }
-
         public IVideoService VideoService
         {
-            get { return new VideoService(); }
+            //Returns new VideoService from DALFacade.
+            get { return new VideoService(new DALFacade().VideoRepository); }
         }
     }
 }

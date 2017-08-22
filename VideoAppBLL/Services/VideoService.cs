@@ -9,44 +9,43 @@ namespace VideoAppBLL.Services
 {
     class VideoService : IVideoService
     {
-        public Video Create(Video vid)
+        private IVideoRepository repo;
+
+        public VideoService(IVideoRepository repo)
         {
-            Video newVid;
-            FakeDB.Videos.Add(newVid = new Video()
-            {
-                Id = FakeDB.Id++,
-                Title = vid.Title,
-                Genre = vid.Genre,
-                Year = vid.Year
-            });
-            return newVid;
+            this.repo = repo;
         }
 
-        //test 12345
+        public Video Create(Video vid)
+        {
+            return this.repo.Create(vid);
+        }
+
         public Video Delete(int Id)
         {
-            var vid = Get(Id);
-            FakeDB.Videos.Remove(vid);
-            return vid;
+            return repo.Delete(Id);
         }
 
         public Video Get(int Id)
         {
-            return FakeDB.Videos.FirstOrDefault(x => x.Id == Id);
+            return repo.Get(Id);
         }
 
         public List<Video> GetAll()
         {
-            return new List<Video>(FakeDB.Videos);
+            return repo.GetAll();
         }
 
         public Video Update(Video vid)
         {
+            //Gets the video
             var videoFromDB = Get(vid.Id);
+            //Checks if there is a video.
             if (videoFromDB == null)
             {
                 throw new InvalidOperationException("Video not found...");
             }
+            //If there is get info.
             videoFromDB.Title = vid.Title;
             videoFromDB.Genre = vid.Genre;
             videoFromDB.Year = videoFromDB.Year;
