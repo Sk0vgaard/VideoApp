@@ -18,6 +18,7 @@ namespace VideoAppDAL.Repositories
         public Video Create(Video vid)
         {
             Video newVid;
+            //Adds the new video.
             Videos.Add(newVid = new Video()
             {
                 Id = Id++,
@@ -25,6 +26,7 @@ namespace VideoAppDAL.Repositories
                 Genre = vid.Genre,
                 Year = vid.Year
             });
+            //Returns the new video.
             return newVid;
         }
 
@@ -35,11 +37,13 @@ namespace VideoAppDAL.Repositories
 
         public Video Get(int Id)
         {
-            return Videos.FirstOrDefault(x => x.Id == Id);
+            //Returns the first video on the list or the default.
+            return Videos.FirstOrDefault(v => v.Id == Id);
         }
 
         public Video Delete(int Id)
         {
+            //Removes the video with the chosen ID.
             var vid = Get(Id);
             Videos.Remove(vid);
             return vid;

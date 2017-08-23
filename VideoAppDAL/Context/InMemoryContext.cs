@@ -12,7 +12,7 @@ namespace VideoAppDAL.Context
         static DbContextOptions<InMemoryContext> options =
             new DbContextOptionsBuilder<InMemoryContext>().UseInMemoryDatabase("theDB").Options;
 
-        //Optens we want in memory
+        //Options we want in memory
         public InMemoryContext() : base(options)
         {
         }

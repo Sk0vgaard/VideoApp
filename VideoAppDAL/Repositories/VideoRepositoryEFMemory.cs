@@ -18,7 +18,7 @@ namespace VideoAppDAL.Repositories
 
         public Video Create(Video vid)
         {
-            var context = new InMemoryContext();
+            this.context = new InMemoryContext();
             this.context.Videos.Add(vid);
             this.context.SaveChanges();
             return vid;

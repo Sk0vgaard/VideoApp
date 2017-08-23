@@ -9,6 +9,7 @@ namespace VideoAppBLL.Services
 {
     class VideoService : IVideoService
     {
+        //Interface
         private IVideoRepository repo;
 
         public VideoService(IVideoRepository repo)
@@ -18,7 +19,7 @@ namespace VideoAppBLL.Services
 
         public Video Create(Video vid)
         {
-            return this.repo.Create(vid);
+            return repo.Create(vid);
         }
 
         public Video Delete(int Id)
@@ -45,7 +46,7 @@ namespace VideoAppBLL.Services
             {
                 throw new InvalidOperationException("Video not found...");
             }
-            //If there is get info.
+            //If there is show info.
             videoFromDB.Title = vid.Title;
             videoFromDB.Genre = vid.Genre;
             videoFromDB.Year = videoFromDB.Year;
