@@ -19,7 +19,9 @@ namespace VideoAppDAL.Repositories
         public Video Create(Video vid)
         {
             this.context = new InMemoryContext();
+            //Adds the video.
             this.context.Videos.Add(vid);
+            //Saves the changes inside the memory.
             this.context.SaveChanges();
             return vid;
         }
@@ -31,13 +33,17 @@ namespace VideoAppDAL.Repositories
 
         public Video Get(int Id)
         {
+            //Returns the first video on the list or the default one.
             return this.context.Videos.FirstOrDefault(v => v.Id == Id);
         }
 
         public Video Delete(int Id)
         {
+            //Gets the id of the video.
             var vid = Get(Id);
+            //Removes the video by the id.
             this.context.Videos.Remove(vid);
+            //Saves the changes.
             this.context.SaveChanges();
             return vid;
         }
