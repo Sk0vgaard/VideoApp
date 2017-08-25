@@ -10,47 +10,70 @@ namespace VideoAppBLL.Services
     class VideoService : IVideoService
     {
         //Interface
-        private IVideoRepository repo;
+        private DALFacade facade;
 
-        public VideoService(IVideoRepository repo)
+        public VideoService(DALFacade facade)
         {
-            this.repo = repo;
+            this.facade = facade;
         }
 
         public Video Create(Video vid)
         {
-            return repo.Create(vid);
+            using (var uow = facade.UnitOfWork)
+            {
+                var newVid = uow.VideoRepository.Create(vid);
+                uow.Complete();
+                return newVid;
+            }
         }
 
         public Video Delete(int Id)
         {
-            return repo.Delete(Id);
+            using (var uow = facade.UnitOfWork)
+            {
+                var newVid = uow.VideoRepository.Delete(Id);
+                uow.Complete();
+                return newVid;
+            }
         }
 
         public Video Get(int Id)
         {
-            return repo.Get(Id);
+            using (var uow = facade.UnitOfWork)
+            {
+                return uow.VideoRepository.Get(Id);
+            }
         }
 
         public List<Video> GetAll()
         {
-            return repo.GetAll();
+            using (var uow = facade.UnitOfWork)
+            {
+                var newVid = uow.VideoRepository.GetAll();
+                uow.Complete();
+                return newVid;
+            }
         }
 
         public Video Update(Video vid)
         {
-            //Gets the video
-            var videoFromDB = Get(vid.Id);
-            //Checks if there is a video.
-            if (videoFromDB == null)
+            using (var uow = facade.UnitOfWork)
             {
-                throw new InvalidOperationException("Video not found...");
+                //Gets the video
+                var videoFromDB = uow.VideoRepository.Get(vid.Id);
+                //Checks if there is a video.
+                if (videoFromDB == null)
+                {
+                    throw new InvalidOperationException("Video not found...");
+                }
+                //If there is show info.
+                videoFromDB.Title = vid.Title;
+                videoFromDB.Genre = vid.Genre;
+                videoFromDB.Year = videoFromDB.Year;
+                //Save changes.
+                uow.Complete();
+                return videoFromDB;
             }
-            //If there is show info.
-            videoFromDB.Title = vid.Title;
-            videoFromDB.Genre = vid.Genre;
-            videoFromDB.Year = videoFromDB.Year;
-            return videoFromDB;
         }
     }
 }

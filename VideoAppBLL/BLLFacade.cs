@@ -11,7 +11,7 @@ namespace VideoAppBLL
         public IVideoService VideoService
         {
             //Returns new VideoService from DALFacade.
-            get { return new VideoService(new DALFacade().VideoRepository); }
+            get { return new VideoService(new DALFacade()); }
         }
     }
 }

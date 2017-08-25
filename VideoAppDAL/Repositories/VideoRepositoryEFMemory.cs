@@ -18,11 +18,8 @@ namespace VideoAppDAL.Repositories
 
         public Video Create(Video vid)
         {
-            this.context = new InMemoryContext();
             //Adds the video.
             this.context.Videos.Add(vid);
-            //Saves the changes inside the memory.
-            this.context.SaveChanges();
             return vid;
         }
 
@@ -43,8 +40,6 @@ namespace VideoAppDAL.Repositories
             var vid = Get(Id);
             //Removes the video by the id.
             this.context.Videos.Remove(vid);
-            //Saves the changes.
-            this.context.SaveChanges();
             return vid;
         }
     }
