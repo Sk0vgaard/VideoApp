@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using VideoAppBLL;
-using VideoAppEntity;
+using VideoAppBLL.BO;
+using VideoAppDAL.Entities;
 
 namespace VideoAppUI
 {
@@ -14,7 +15,7 @@ namespace VideoAppUI
         static void Main(string[] args)
         {
             //Adds the first video.
-            var video1 = new Video
+            var video1 = new VideoBO()
             {
                 Title = "Tarzan",
                 Genre = "Eventyr",
@@ -23,7 +24,7 @@ namespace VideoAppUI
             bllFacade.VideoService.Create(video1);
 
             //A other way to add a new video.
-            bllFacade.VideoService.Create(new Video()
+            bllFacade.VideoService.Create(new VideoBO()
             {
                 Title = "Baby",
                 Genre = "Drama",
@@ -106,7 +107,7 @@ namespace VideoAppUI
         }
 
         //Finds the video by the id.
-        private static Video FindVideoById()
+        private static VideoBO FindVideoById()
         {
             Console.WriteLine("\nChoose the id for the video you wish to edit:");
             int id;
@@ -148,7 +149,7 @@ namespace VideoAppUI
             int year = Convert.ToInt32(Console.ReadLine());
 
             //Creates the new video.
-            bllFacade.VideoService.Create(new Video()
+            bllFacade.VideoService.Create(new VideoBO()
             {
                 Title = title,
                 Genre = genre,

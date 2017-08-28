@@ -1,61 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using VideoAppBLL.BO;
 using VideoAppDAL;
-using VideoAppEntity;
+using VideoAppDAL.Entities;
 
 namespace VideoAppBLL.Services
 {
-    class VideoService : IVideoService
+    internal class VideoService : IVideoService
     {
         //Interface
-        private DALFacade facade;
+        private readonly DALFacade facade;
 
         public VideoService(DALFacade facade)
         {
             this.facade = facade;
         }
 
-        public Video Create(Video vid)
+        public VideoBO Create(VideoBO vid)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var newVid = uow.VideoRepository.Create(vid);
+                var newVid = uow.VideoRepository.Create(Convert(vid));
                 uow.Complete();
-                return newVid;
+                return Convert(newVid);
             }
         }
 
-        public Video Delete(int Id)
+        public VideoBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
                 var newVid = uow.VideoRepository.Delete(Id);
                 uow.Complete();
-                return newVid;
+                return Convert(newVid);
             }
         }
 
-        public Video Get(int Id)
+        public VideoBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
-                return uow.VideoRepository.Get(Id);
+                return Convert(uow.VideoRepository.Get(Id));
             }
         }
 
-        public List<Video> GetAll()
+        public List<VideoBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
             {
                 var newVid = uow.VideoRepository.GetAll();
                 uow.Complete();
-                return newVid;
+                return newVid.Select(Convert).ToList();
             }
         }
 
-        public Video Update(Video vid)
+        public VideoBO Update(VideoBO vid)
         {
             using (var uow = facade.UnitOfWork)
             {
@@ -63,17 +63,36 @@ namespace VideoAppBLL.Services
                 var videoFromDB = uow.VideoRepository.Get(vid.Id);
                 //Checks if there is a video.
                 if (videoFromDB == null)
-                {
                     throw new InvalidOperationException("Video not found...");
-                }
                 //If there is show info.
                 videoFromDB.Title = vid.Title;
                 videoFromDB.Genre = vid.Genre;
                 videoFromDB.Year = videoFromDB.Year;
                 //Save changes.
                 uow.Complete();
-                return videoFromDB;
+                return Convert(videoFromDB);
             }
+        }
+
+        private Video Convert(VideoBO vid)
+        {
+            return new Video()
+            {
+                Id = vid.Id,
+                Title = vid.Title,
+                Genre = vid.Genre,
+                Year = vid.Year
+            };
+        }
+        private VideoBO Convert(Video vid)
+        {
+            return new VideoBO()
+            {
+                Id = vid.Id,
+                Title = vid.Title,
+                Genre = vid.Genre,
+                Year = vid.Year
+            };
         }
     }
 }

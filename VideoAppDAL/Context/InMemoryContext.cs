@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
-using VideoAppEntity;
+using VideoAppDAL.Entities;
 
 namespace VideoAppDAL.Context
 {

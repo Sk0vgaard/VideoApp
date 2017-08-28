@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VideoAppEntity
+namespace VideoAppBLL.BO
 {
-    public class Video
+    public class VideoBO
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
         public string Genre { get; set; }
+
+        public string TitleAndYear { get { return $"{Title} {Genre}"; } }
 
         public int Year { get; set; }
     }
