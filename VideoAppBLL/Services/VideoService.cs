@@ -40,8 +40,21 @@ namespace VideoAppBLL.Services
         public VideoBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
+
             {
-                return Convert(uow.VideoRepository.Get(Id));
+                var videoFromDB = uow.VideoRepository.Get(Id);
+                VideoBO videoToReturn = null;
+                //Checks if there is a video with the ID.
+                if (videoFromDB != null)
+                {
+                    videoToReturn = Convert(videoFromDB);
+                }
+                else
+                {
+                    Console.WriteLine("Can't find the video by the ID");
+                }
+
+                return videoToReturn;
             }
         }
 
@@ -63,11 +76,14 @@ namespace VideoAppBLL.Services
                 var videoFromDB = uow.VideoRepository.Get(vid.Id);
                 //Checks if there is a video.
                 if (videoFromDB == null)
-                    throw new InvalidOperationException("Video not found...");
+                {
+                    Console.WriteLine("Video doesn't exist");
+                    return null;
+                }
                 //If there is show info.
                 videoFromDB.Title = vid.Title;
                 videoFromDB.Genre = vid.Genre;
-                videoFromDB.Year = videoFromDB.Year;
+                videoFromDB.Year = vid.Year;
                 //Save changes.
                 uow.Complete();
                 return Convert(videoFromDB);
@@ -84,6 +100,7 @@ namespace VideoAppBLL.Services
                 Year = vid.Year
             };
         }
+
         private VideoBO Convert(Video vid)
         {
             return new VideoBO()

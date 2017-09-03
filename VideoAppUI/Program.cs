@@ -80,7 +80,6 @@ namespace VideoAppUI
         {
             // Finds the video to be edited by the ID.
             var video = FindVideoById();
-            int year;
             // If the video has been found then the edit starts.
             if (video != null)
             {
@@ -90,13 +89,15 @@ namespace VideoAppUI
                 video.Genre = Console.ReadLine();
                 Console.WriteLine($"Year of video: ");
                 // Checks if the user have used a int and not string.
+                int year;
                 while (!int.TryParse(Console.ReadLine(), out year))
                 {
                     Console.WriteLine("Please insert a number...");
                 }
 
-                //video.Year = int.Parse(Console.ReadLine());
+                video.Year = year;
                 //Updates the list with the new edits.
+
                 bllFacade.VideoService.Update(video);
             }
             // If the video isnt found the app will tell the user that the Video isnt found.
