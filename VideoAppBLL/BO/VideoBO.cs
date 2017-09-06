@@ -12,8 +12,6 @@ namespace VideoAppBLL.BO
 
         public string Genre { get; set; }
 
-        public string TitleAndYear { get { return $"{Title} {Genre}"; } }
-
         public int Year { get; set; }
     }
 }

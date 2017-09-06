@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoAppUI", "VideoAppUI\VideoAppUI.csproj", "{93E622A2-AD44-43DE-A0D3-658DC34859E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoAppBLL", "VideoAppBLL\VideoAppBLL.csproj", "{05E78138-A563-48DD-87A6-49B466E8AD23}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoAppDAL", "VideoAppDAL\VideoAppDAL.csproj", "{5ED67440-0AA2-485D-80CE-D22C79D5ECF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRestAPI", "VideoRestAPI\VideoRestAPI.csproj", "{5A666300-0A3A-4794-A2A1-52D046FC6512}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{5ED67440-0AA2-485D-80CE-D22C79D5ECF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED67440-0AA2-485D-80CE-D22C79D5ECF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED67440-0AA2-485D-80CE-D22C79D5ECF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB50E9C6-B395-49F9-96B0-EB0B58599675}
 	EndGlobalSection
 EndGlobal
