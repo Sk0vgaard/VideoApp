@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VideoAppBLL.BO;
+using VideoAppBLL.Converters;
 using VideoAppDAL;
 using VideoAppDAL.Entities;
 
@@ -9,6 +10,8 @@ namespace VideoAppBLL.Services
 {
     internal class VideoService : IVideoService
     {
+        private VideoConverter conv = new VideoConverter();
+
         //Interface
         private readonly DALFacade facade;
 
@@ -21,9 +24,9 @@ namespace VideoAppBLL.Services
         {
             using (var uow = facade.UnitOfWork)
             {
-                var newVid = uow.VideoRepository.Create(Convert(vid));
+                var newVid = uow.VideoRepository.Create(conv.Convert(vid));
                 uow.Complete();
-                return Convert(newVid);
+                return conv.Convert(newVid);
             }
         }
 
@@ -33,7 +36,7 @@ namespace VideoAppBLL.Services
             {
                 foreach (var video in videoes)
                 {
-                    uow.VideoRepository.Create(Convert(video));
+                    uow.VideoRepository.Create(conv.Convert(video));
 
                 }
                 uow.Complete();
@@ -46,7 +49,7 @@ namespace VideoAppBLL.Services
             {
                 var newVid = uow.VideoRepository.Delete(Id);
                 uow.Complete();
-                return Convert(newVid);
+                return conv.Convert(newVid);
             }
         }
 
@@ -60,7 +63,7 @@ namespace VideoAppBLL.Services
                 //Checks if there is a video with the ID.
                 if (videoFromDB != null)
                 {
-                    videoToReturn = Convert(videoFromDB);
+                    videoToReturn = conv.Convert(videoFromDB);
                 }
                 else
                 {
@@ -77,7 +80,7 @@ namespace VideoAppBLL.Services
             {
                 var newVid = uow.VideoRepository.GetAll();
                 uow.Complete();
-                return newVid.Select(Convert).ToList();
+                return newVid.Select(conv.Convert).ToList();
             }
         }
 
@@ -100,30 +103,10 @@ namespace VideoAppBLL.Services
                 videoFromDB.Year = vid.Year;
                 //Save changes.
                 uow.Complete();
-                return Convert(videoFromDB);
+                return conv.Convert(videoFromDB);
             }
         }
 
-        private Video Convert(VideoBO vid)
-        {
-            return new Video()
-            {
-                Id = vid.Id,
-                Title = vid.Title,
-                Genre = vid.Genre,
-                Year = vid.Year
-            };
-        }
-
-        private VideoBO Convert(Video vid)
-        {
-            return new VideoBO()
-            {
-                Id = vid.Id,
-                Title = vid.Title,
-                Genre = vid.Genre,
-                Year = vid.Year
-            };
-        }
+        
     }
 }
