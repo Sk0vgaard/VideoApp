@@ -77,8 +77,9 @@ namespace VideoAppBLL.Services
                 //Checks if there is a video.
                 if (videoFromDB == null)
                 {
-                    Console.WriteLine("Video doesn't exist");
-                    return null;
+                    throw new InvalidOperationException("Video not found.");
+                    //Console.WriteLine("Video doesn't exist");
+                    //return null;
                 }
                 //If there is show info.
                 videoFromDB.Title = vid.Title;

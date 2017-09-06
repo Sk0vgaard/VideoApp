@@ -31,16 +31,32 @@ namespace VideoRestAPI.Controllers
         
         // POST: api/Videoes
         [HttpPost]
-        public void Post([FromBody]VideoBO vid)
+        public IActionResult Post([FromBody]VideoBO vid)
         {
-            facade.VideoService.Create(vid);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(facade.VideoService.Create(vid));
         }
         
         // PUT: api/Videoes/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]VideoBO vid)
+        public IActionResult Put(int id, [FromBody]VideoBO vid)
         {
-            facade.VideoService.Update(vid);
+            if (id != vid.Id)
+            {
+                return BadRequest("Path Id does not match Video ID in json object.");
+            }
+            try
+            {
+                return Ok(facade.VideoService.Update(vid));
+
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
         
         // DELETE: api/ApiWithActions/5
