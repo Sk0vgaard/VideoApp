@@ -27,6 +27,19 @@ namespace VideoAppBLL.Services
             }
         }
 
+        public void CreateAll(List<VideoBO> videoes)
+        {
+            using (var uow = facade.UnitOfWork)
+            {
+                foreach (var video in videoes)
+                {
+                    uow.VideoRepository.Create(Convert(video));
+
+                }
+                uow.Complete();
+            }
+        }
+
         public VideoBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)

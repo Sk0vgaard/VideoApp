@@ -9,29 +9,29 @@ namespace VideoAppDAL.Repositories
 {
     class VideoRepositoryEFMemory : IVideoRepository
     {
-        public InMemoryContext context;
+        public VideoAppContext _context;
 
-        public VideoRepositoryEFMemory(InMemoryContext context)
+        public VideoRepositoryEFMemory(VideoAppContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public Video Create(Video vid)
         {
             //Adds the video.
-            this.context.Videos.Add(vid);
+            _context.Videos.Add(vid);
             return vid;
         }
 
         public List<Video> GetAll()
         {
-            return this.context.Videos.ToList();
+            return _context.Videos.ToList();
         }
 
         public Video Get(int Id)
         {
             //Returns the first video on the list or the default one.
-            return this.context.Videos.FirstOrDefault(v => v.Id == Id);
+            return _context.Videos.FirstOrDefault(v => v.Id == Id);
         }
 
         public Video Delete(int Id)
@@ -39,7 +39,7 @@ namespace VideoAppDAL.Repositories
             //Gets the id of the video.
             var vid = Get(Id);
             //Removes the video by the id.
-            this.context.Videos.Remove(vid);
+            _context.Videos.Remove(vid);
             return vid;
         }
     }

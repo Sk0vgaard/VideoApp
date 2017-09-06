@@ -7,17 +7,19 @@ using VideoAppDAL.Entities;
 
 namespace VideoAppDAL.Context
 {
-    class InMemoryContext : DbContext
+    class VideoAppContext : DbContext
     {
-        static DbContextOptions<InMemoryContext> options =
-            new DbContextOptionsBuilder<InMemoryContext>().UseInMemoryDatabase("theDB").Options;
+        static DbContextOptions<VideoAppContext> options =
+            new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("theDB").Options;
 
         //Options we want in memory
-        public InMemoryContext() : base(options)
+        public VideoAppContext() : base(options)
         {
         }
 
         //DBSet
         public DbSet<Video> Videos { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+
     }
 }

@@ -6,18 +6,21 @@ using VideoAppDAL.Repositories;
 
 namespace VideoAppDAL.OUW
 {
-    class UnitOfWorkMem : IUnitOfWork
+    class UnitOfWork : IUnitOfWork
     {
         //First repository aviable. 
         public IVideoRepository VideoRepository { get; internal set; }
-        //A context that represent the DB. (Connection, table and knows how the db should work.)
-        private InMemoryContext context;
+        public IRentalRepository RentalRepository { get; internal set; }
 
-        public UnitOfWorkMem()
+        //A context that represent the DB. (Connection, table and knows how the db should work.)
+        private VideoAppContext context;
+
+        public UnitOfWork()
         {
-            context = new InMemoryContext();
+            context = new VideoAppContext();
             //Creating a repository using the context.
             VideoRepository = new VideoRepositoryEFMemory(context);
+            RentalRepository = new RentalRepository(context);
         }
 
         public void Dispose()

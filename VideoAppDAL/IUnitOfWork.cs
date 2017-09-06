@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Remotion.Linq.Clauses.ResultOperators;
 
 namespace VideoAppDAL
 {
@@ -8,6 +9,8 @@ namespace VideoAppDAL
     public interface IUnitOfWork : IDisposable
     {
         IVideoRepository VideoRepository { get; }
+
+        IRentalRepository RentalRepository { get; }
 
         int Complete();
     }

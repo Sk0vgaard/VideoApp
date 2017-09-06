@@ -12,13 +12,13 @@ namespace VideoAppDAL
         public IVideoRepository VideoRepository
         {
             //Resturns the new VideoRepositoryFakeDB. Connects with BLLFacade.
-            get { return new VideoRepositoryEFMemory(new Context.InMemoryContext()); }
+            get { return new VideoRepositoryEFMemory(new Context.VideoAppContext()); }
         }
 
         public IUnitOfWork UnitOfWork
         {
             //Resturns the new VideoRepositoryFakeDB. Connects with BLLFacade.
-            get { return new UnitOfWorkMem(); }
+            get { return new UnitOfWork(); }
         }
     }
 }
