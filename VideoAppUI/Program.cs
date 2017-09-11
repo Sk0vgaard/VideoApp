@@ -18,7 +18,7 @@ namespace VideoAppUI
             var video1 = new VideoBO()
             {
                 Title = "Tarzan",
-                Genre = "Eventyr",
+                PricePrDay = 80,
                 Year = 2016
             };
             bllFacade.VideoService.Create(video1);
@@ -27,7 +27,7 @@ namespace VideoAppUI
             bllFacade.VideoService.Create(new VideoBO()
             {
                 Title = "Baby",
-                Genre = "Drama",
+                PricePrDay = 20,
                 Year = 2018
             });
 
@@ -59,7 +59,7 @@ namespace VideoAppUI
                         AddVideo(); //Adds a video.
                         break;
                     case 4:
-                        EditVideo(); //Edits the video (new Title, Genre and Year.)
+                        EditVideo(); //Edits the video (new Title, PricePrDay and Year.)
                         break;
                     case 5:
                         DeleteVideo(); //Deletes a video.
@@ -85,8 +85,15 @@ namespace VideoAppUI
             {
                 Console.WriteLine($"Video name: ");
                 video.Title = Console.ReadLine();
-                Console.WriteLine($"Genre name: ");
-                video.Genre = Console.ReadLine();
+
+                Console.WriteLine($"Price for video pr. day: ");
+                int price;
+                while (!int.TryParse(Console.ReadLine(), out price))
+                {
+                    Console.WriteLine("Please insert a number...");
+                }
+                video.PricePrDay = price;
+
                 Console.WriteLine($"Year of video: ");
                 // Checks if the user have used a int and not string.
                 int year;
@@ -143,8 +150,8 @@ namespace VideoAppUI
             Console.WriteLine("Title: ");
             var title = Console.ReadLine();
 
-            Console.WriteLine("Genre: ");
-            var genre = Console.ReadLine();
+            Console.WriteLine("PricePrDay: ");
+            int price = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Year: ");
             int year = Convert.ToInt32(Console.ReadLine());
@@ -153,7 +160,7 @@ namespace VideoAppUI
             bllFacade.VideoService.Create(new VideoBO()
             {
                 Title = title,
-                Genre = genre,
+                PricePrDay = price,
                 Year = year
             });
         }
@@ -167,7 +174,7 @@ namespace VideoAppUI
             {
                 //Show the info for each video.
                 Console.WriteLine(
-                    $"Id: {video.Id}\nTitle of video: {video.Title}\nGenre: {video.Genre}\nYear: {video.Year}\n");
+                    $"Id: {video.Id}\nTitle of video: {video.Title}\nPrice pr. day: {video.PricePrDay}\nYear: {video.Year}\n");
             }
             Console.WriteLine("\n");
         }

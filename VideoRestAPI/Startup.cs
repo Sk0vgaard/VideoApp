@@ -39,14 +39,14 @@ namespace VideoRestAPI
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy",
-                        Genre = "Adventure",
+                        PricePrDay = 10,
                         Year = 2015
                     });
                 var vid2 = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy 2",
-                        Genre = "Adventure",
+                        PricePrDay = 20,
                         Year = 2017
                     });
 

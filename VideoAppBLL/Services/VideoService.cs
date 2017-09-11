@@ -99,7 +99,7 @@ namespace VideoAppBLL.Services
                 }
                 //If there is show info.
                 videoFromDB.Title = vid.Title;
-                videoFromDB.Genre = vid.Genre;
+                videoFromDB.PricePrDay = vid.PricePrDay;
                 videoFromDB.Year = vid.Year;
                 //Save changes.
                 uow.Complete();

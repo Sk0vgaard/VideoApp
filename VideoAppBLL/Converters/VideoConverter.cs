@@ -18,7 +18,7 @@ namespace VideoAppBLL.Converters
             {
                 Id = vid.Id,
                 Title = vid.Title,
-                Genre = vid.Genre,
+                PricePrDay = vid.PricePrDay,
                 Year = vid.Year
             };
         }
@@ -33,7 +33,7 @@ namespace VideoAppBLL.Converters
             {
                 Id = vid.Id,
                 Title = vid.Title,
-                Genre = vid.Genre,
+                PricePrDay = vid.PricePrDay,
                 Year = vid.Year
             };
         }
