@@ -55,7 +55,7 @@ namespace VideoRestAPI
                     {
                         OrderDate = DateTime.Now,
                         DeliveryDate = DateTime.Now.AddDays(7),
-                        Video = vid
+                        VideoId = vid.Id
 
                     });
 

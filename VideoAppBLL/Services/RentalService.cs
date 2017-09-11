@@ -42,6 +42,7 @@ namespace VideoAppBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var rentalEntity = uow.RentalRepository.Get(Id);
+                rentalEntity.Video = uow.VideoRepository.Get(rentalEntity.VideoId);
                 return conv.Convert(rentalEntity);
             }
         }
@@ -57,7 +58,11 @@ namespace VideoAppBLL.Services
                 }
                 rentalEntity.OrderDate = rental.OrderDate;
                 rentalEntity.DeliveryDate = rental.DeliveryDate;
+                rentalEntity.VideoId = rentalEntity.VideoId;
+
                 uow.Complete();
+                //BLL choice
+                rentalEntity.Video = uow.VideoRepository.Get(rentalEntity.VideoId);
                 return conv.Convert(rentalEntity);
             }
         }

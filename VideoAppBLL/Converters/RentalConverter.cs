@@ -20,7 +20,6 @@ namespace VideoAppBLL.Converters
                 OrderDate = rental.OrderDate,
                 DeliveryDate = rental.DeliveryDate,
                 //Video is the same video as from RentalBO to convert it to a Video Entity
-                Video = new VideoConverter().Convert(rental.Video),
                 VideoId = rental.VideoId
             };
         }

@@ -19,10 +19,6 @@ namespace VideoAppDAL.Repositories
 
         public Rental Create(Rental rental)
         {
-            if (rental.Video != null)
-            {
-                _context.Entry(rental.Video).State = EntityState.Unchanged;
-            }
             _context.Rentals.Add(rental);
             return rental;
         }
