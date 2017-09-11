@@ -50,6 +50,13 @@ namespace VideoRestAPI
                         Year = 2017
                     });
 
+                facade.RentalService.Create(
+                    new RentalBO()
+                    {
+                        OrderDate = DateTime.Now,
+                        DeliveryDate = DateTime.Now.AddDays(7),
+                    });
+
             }
 
             app.UseMvc();

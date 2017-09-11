@@ -10,7 +10,8 @@ using VideoAppBLL.BO;
 
 namespace VideoRestAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Produces("application/json")]
+    [Route("api/Rentals")]
     public class RentalsController : Controller
     {
         BLLFacade facade = new BLLFacade();

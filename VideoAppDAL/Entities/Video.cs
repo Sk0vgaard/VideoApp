@@ -13,5 +13,7 @@ namespace VideoAppDAL.Entities
         public string Genre { get; set; }
 
         public int Year { get; set; }
+
+        public List<Rental> Rentals { get; set; }
     }
 }
