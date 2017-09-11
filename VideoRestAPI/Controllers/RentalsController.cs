@@ -61,9 +61,21 @@ namespace VideoRestAPI.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromBody]RentalBO rental)
         {
-            facade.RentalService.Delete(id);
+            if (id != rental.Id)
+            {
+                return BadRequest("The path Id does not match with the rental Id in json object.");
+            }
+            //TEST IF WORKS!
+            try
+            {
+                return Ok(facade.RentalService.Delete(id));
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
     }
 }
