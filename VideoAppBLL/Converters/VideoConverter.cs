@@ -10,6 +10,10 @@ namespace VideoAppBLL.Converters
     {
         internal Video Convert(VideoBO vid)
         {
+            if (vid == null)
+            {
+                return null;
+            }
             return new Video()
             {
                 Id = vid.Id,
@@ -21,6 +25,10 @@ namespace VideoAppBLL.Converters
 
         internal VideoBO Convert(Video vid)
         {
+            if (vid == null)
+            {
+                return null;
+            }
             return new VideoBO()
             {
                 Id = vid.Id,

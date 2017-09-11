@@ -10,21 +10,33 @@ namespace VideoAppBLL.Converters
     {
         internal Rental Convert(RentalBO rental)
         {
+            if (rental == null)
+            {
+                return null;
+            }
             return new Rental()
             {
                 Id = rental.Id,
                 OrderDate = rental.OrderDate,
-                DeliveryDate = rental.DeliveryDate
+                DeliveryDate = rental.DeliveryDate,
+                //Video is the same video as from RentalBO to convert it to a Video Entity
+                Video = new VideoConverter().Convert(rental.Video)
             };
         }
 
         internal RentalBO Convert(Rental rental)
         {
+            if (rental == null)
+            {
+                return null;
+            }
             return new RentalBO()
             {
                 Id = rental.Id,
                 OrderDate = rental.OrderDate,
-                DeliveryDate = rental.DeliveryDate
+                DeliveryDate = rental.DeliveryDate,
+                Video = new VideoConverter().Convert(rental.Video)
+
             };
         }
     }
