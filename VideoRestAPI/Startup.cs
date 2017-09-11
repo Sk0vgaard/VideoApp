@@ -35,7 +35,7 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BLLFacade();
-                facade.VideoService.Create(
+                var vid = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy",
@@ -55,6 +55,8 @@ namespace VideoRestAPI
                     {
                         OrderDate = DateTime.Now,
                         DeliveryDate = DateTime.Now.AddDays(7),
+                        Video = vid
+
                     });
 
             }

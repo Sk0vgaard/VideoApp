@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using VideoAppDAL.Context;
 using VideoAppDAL.Entities;
 
@@ -10,6 +11,7 @@ namespace VideoAppDAL.Repositories
     class RentalRepository : IRentalRepository
     {
         private VideoAppContext _context;
+
         public RentalRepository(VideoAppContext context)
         {
             _context = context;
@@ -17,6 +19,10 @@ namespace VideoAppDAL.Repositories
 
         public Rental Create(Rental rental)
         {
+            if (rental.Video != null)
+            {
+                _context.Entry(rental.Video).State = EntityState.Unchanged;
+            }
             _context.Rentals.Add(rental);
             return rental;
         }
