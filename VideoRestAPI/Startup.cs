@@ -35,14 +35,14 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BLLFacade();
-                var vid = facade.VideoService.Create(
+                var vid1 = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy",
                         Genre = "Adventure",
                         Year = 2015
                     });
-                facade.VideoService.Create(
+                var vid2 = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy 2",
@@ -55,10 +55,17 @@ namespace VideoRestAPI
                     {
                         OrderDate = DateTime.Now,
                         DeliveryDate = DateTime.Now.AddDays(7),
-                        VideoId = vid.Id
+                        VideoId = vid1.Id
 
                     });
+                facade.RentalService.Create(
+                    new RentalBO()
+                    {
+                        OrderDate = DateTime.Now.AddDays(2),
+                        DeliveryDate = DateTime.Now.AddDays(9),
+                        VideoId = vid2.Id
 
+                    });
             }
 
             app.UseMvc();
