@@ -13,5 +13,11 @@ namespace VideoAppBLL
             //Returns new VideoService from DALFacade.
             get { return new VideoService(new DALFacade()); }
         }
+
+        public IRentalService RentalService
+        {
+            //Returns new VideoService from DALFacade.
+            get { return new RentalService(new DALFacade()); }
+        }
     }
 }
