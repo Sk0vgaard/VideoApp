@@ -75,7 +75,7 @@ namespace VideoRestAPI.Controllers
             }
             catch (InvalidOperationException e)
             {
-                return StatusCode(404, e.Message);
+                return NotFound(e.Message);
             }
         }
     }
