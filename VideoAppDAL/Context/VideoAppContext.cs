@@ -20,6 +20,6 @@ namespace VideoAppDAL.Context
         //DBSet
         public DbSet<Video> Videos { get; set; }
         public DbSet<Rental> Rentals { get; set; }
-
+        public DbSet<User> Users { get; set; }
     }
 }

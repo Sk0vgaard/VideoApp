@@ -8,11 +8,11 @@ using VideoAppDAL.Entities;
 
 namespace VideoAppDAL.Repositories
 {
-    class RentalRepository : IRentalRepository
+    class RentalRepositoryEFMemory : IRentalRepository
     {
         private VideoAppContext _context;
 
-        public RentalRepository(VideoAppContext context)
+        public RentalRepositoryEFMemory(VideoAppContext context)
         {
             _context = context;
         }

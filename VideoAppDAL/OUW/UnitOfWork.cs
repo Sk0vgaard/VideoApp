@@ -20,7 +20,7 @@ namespace VideoAppDAL.OUW
             context = new VideoAppContext();
             //Creating a repository using the context.
             VideoRepository = new VideoRepositoryEFMemory(context);
-            RentalRepository = new RentalRepository(context);
+            RentalRepository = new RentalRepositoryEFMemory(context);
         }
 
         public void Dispose()
