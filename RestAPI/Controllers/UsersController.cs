@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VideoAppBLL;
+using VideoAppBLL.BO;
 
 namespace VideoRestAPI.Controllers
 {
@@ -11,36 +13,58 @@ namespace VideoRestAPI.Controllers
     [Route("api/Users")]
     public class UsersController : Controller
     {
+
+        BLLFacade facade = new BLLFacade();
+
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<UserBO> Get()
         {
-            return new string[] { "value1", "value2" };
+            return facade.UserService.GetAll();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public UserBO Get(int id)
         {
-            return "value";
+            return facade.UserService.Get(id);
         }
         
         // POST: api/Users
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]UserBO user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(facade.UserService.Create(user));
         }
         
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]UserBO user)
         {
+            if (id != user.Id)
+            {
+                return BadRequest("Path Id does not match User ID in json object.");
+            }
+            try
+            {
+                return Ok(facade.UserService.Update(user));
+
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            facade.UserService.Delete(id);
         }
     }
 }
