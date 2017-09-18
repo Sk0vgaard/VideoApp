@@ -24,7 +24,10 @@ namespace VideoAppBLL.Converters
 
         internal UserBO Convert(User user)
         {
-            if (user == null) return null;
+            if (user == null)
+            {
+                return null;
+            }
             return new UserBO()
             {
                 Id = user.Id,

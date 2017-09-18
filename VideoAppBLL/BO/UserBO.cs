@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace VideoAppBLL.BO
@@ -9,5 +11,6 @@ namespace VideoAppBLL.BO
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }   
+        public int RentalId { get; set; }
     }
 }

@@ -65,12 +65,14 @@ namespace RestAPI
                     new UserBO()
                     {
                         Username = "Brugernavn1",
-                        Password = "Password1"
+                        Password = "Password1",
+                        RentalId = rental1.Id
                     });
                 var user2 = facade.UserService.Create(new UserBO()
                 {
                     Username = "Brugernavn2",
-                    Password = "Password2"
+                    Password = "Password2",
+                    RentalId = rental2.Id
                 });
 
             }
