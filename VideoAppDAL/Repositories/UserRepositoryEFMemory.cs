@@ -36,7 +36,6 @@ namespace VideoAppDAL.Repositories
             var user = Get(Id);
             _context.Users.Remove(user);
             return user;
-
         }
     }
 }

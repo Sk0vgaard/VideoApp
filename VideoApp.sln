@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoAppBLL", "VideoAppBLL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoAppDAL", "VideoAppDAL\VideoAppDAL.csproj", "{5ED67440-0AA2-485D-80CE-D22C79D5ECF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRestAPI", "VideoRestAPI\VideoRestAPI.csproj", "{5A666300-0A3A-4794-A2A1-52D046FC6512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoRestAPI", "VideoRestAPI\VideoRestAPI.csproj", "{5A666300-0A3A-4794-A2A1-52D046FC6512}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI", "RestAPI\RestAPI.csproj", "{EBF9E5A9-805C-4A83-BA4C-6A2FD046A358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A666300-0A3A-4794-A2A1-52D046FC6512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF9E5A9-805C-4A83-BA4C-6A2FD046A358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF9E5A9-805C-4A83-BA4C-6A2FD046A358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF9E5A9-805C-4A83-BA4C-6A2FD046A358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF9E5A9-805C-4A83-BA4C-6A2FD046A358}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

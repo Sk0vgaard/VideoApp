@@ -11,6 +11,7 @@ namespace VideoAppDAL.OUW
         //First repository aviable. 
         public IVideoRepository VideoRepository { get; internal set; }
         public IRentalRepository RentalRepository { get; internal set; }
+        public IUserRepository UserRepository { get; }
 
         //A context that represent the DB. (Connection, table and knows how the db should work.)
         private VideoAppContext context;

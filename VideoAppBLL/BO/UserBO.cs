@@ -4,7 +4,10 @@ using System.Text;
 
 namespace VideoAppBLL.BO
 {
-    class UserBO
+    public class UserBO
     {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }   
     }
 }

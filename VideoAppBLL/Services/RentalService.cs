@@ -41,7 +41,7 @@ namespace VideoAppBLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                var rentalEntity = uow.RentalRepository.Get(Id);
+                var rentalEntity = uow.RentalRepository.Get(Id);    
                 rentalEntity.Video = uow.VideoRepository.Get(rentalEntity.VideoId);
                 return conv.Convert(rentalEntity);
             }

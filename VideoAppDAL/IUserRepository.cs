@@ -5,7 +5,7 @@ using VideoAppDAL.Entities;
 
 namespace VideoAppDAL
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         //C
         User Create(User user);

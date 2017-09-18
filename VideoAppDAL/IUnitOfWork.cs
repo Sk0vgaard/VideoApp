@@ -12,6 +12,8 @@ namespace VideoAppDAL
 
         IRentalRepository RentalRepository { get; }
 
+        IUserRepository UserRepository { get; }
+
         int Complete();
     }
 }
