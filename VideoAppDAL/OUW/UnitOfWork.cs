@@ -33,7 +33,15 @@ namespace VideoAppDAL.OUW
         public int Complete()
         {
             //The number of objects written to the underlying database.
-            return context.SaveChanges();
+            try
+            {
+                return context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

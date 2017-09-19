@@ -12,5 +12,6 @@ namespace VideoAppBLL.BO
         public string Username { get; set; }
         public string Password { get; set; }   
         public int RentalId { get; set; }
+        public RentalBO Rental { get; set; }
     }
 }

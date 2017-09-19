@@ -18,7 +18,8 @@ namespace VideoAppBLL.Converters
             {
                 Id = user.Id,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                RentalId = user.RentalId
             };
         }
 
@@ -32,7 +33,9 @@ namespace VideoAppBLL.Converters
             {
                 Id = user.Id,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                RentalId = user.RentalId
+
             };
         }
     }

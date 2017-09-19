@@ -42,6 +42,7 @@ namespace VideoAppBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var newUser = uow.UserRepository.Get(Id);
+                newUser.Rental = uow.RentalRepository.Get(newUser.RentalId);
                 return conv.Convert(newUser);
             }
         }
