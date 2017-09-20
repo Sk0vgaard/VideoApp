@@ -12,6 +12,7 @@ namespace VideoAppDAL.OUW
         public IVideoRepository VideoRepository { get; internal set; }
         public IRentalRepository RentalRepository { get; internal set; }
         public IUserRepository UserRepository { get; }
+        public IGenreRepository GenreRepository { get; }
 
         //A context that represent the DB. (Connection, table and knows how the db should work.)
         private VideoAppContext context;
@@ -23,6 +24,7 @@ namespace VideoAppDAL.OUW
             VideoRepository = new VideoRepositoryEFMemory(context);
             RentalRepository = new RentalRepositoryEFMemory(context);
             UserRepository = new UserRepositoryEFMemory(context);
+            GenreRepository = new GenreRepositoryEFMemory(context);
         }
 
         public void Dispose()

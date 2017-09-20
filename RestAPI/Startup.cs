@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,22 +31,41 @@ namespace RestAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
                 var facade = new BLLFacade();
+
+                // GENRES
+                var drama = facade.GenreService.Create(
+                    new GenreBO()
+                    {
+                        Name = "Drama"
+                    });
+                var adventure = facade.GenreService.Create(
+                    new GenreBO()
+                    {
+                        Name = "Adventure"
+                    });
+
+                // VIDEOES
                 var vid1 = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy",
                         PricePrDay = 10,
-                        Year = 2015
+                        Year = 2015,
+                        GenreId = adventure.Id
+                        //Genres = new List<GenreBO>() { adventure }
                     });
                 var vid2 = facade.VideoService.Create(
                     new VideoBO()
                     {
                         Title = "Gaurdian of the Galaxzy 2",
                         PricePrDay = 20,
-                        Year = 2017
+                        Year = 2017,
+                        GenreId = drama.Id
                     });
 
+                // RENTALS
                 var rental1 = facade.RentalService.Create(
                     new RentalBO()
                     {
@@ -61,6 +81,7 @@ namespace RestAPI
                         VideoId = vid2.Id
                     });
 
+                // USERS
                 var user1 = facade.UserService.Create(
                     new UserBO()
                     {
@@ -74,7 +95,6 @@ namespace RestAPI
                     Password = "Password2",
                     RentalId = rental2.Id
                 });
-
             }
 
             app.UseMvc();

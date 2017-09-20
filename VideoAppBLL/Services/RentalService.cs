@@ -58,7 +58,7 @@ namespace VideoAppBLL.Services
                 }
                 rentalEntity.OrderDate = rental.OrderDate;
                 rentalEntity.DeliveryDate = rental.DeliveryDate;
-                rentalEntity.VideoId = rentalEntity.VideoId;
+                rentalEntity.VideoId = rental.VideoId;
 
                 uow.Complete();
                 //BLL choice

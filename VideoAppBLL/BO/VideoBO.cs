@@ -17,5 +17,9 @@ namespace VideoAppBLL.BO
         public int PricePrDay { get; set; }
 
         public int Year { get; set; }
+
+        public List<GenreBO> Genres { get; set; }
+
+        public int GenreId { get; set; }
     }
 }

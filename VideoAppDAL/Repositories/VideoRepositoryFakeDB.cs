@@ -24,7 +24,8 @@ namespace VideoAppDAL.Repositories
                 Id = Id++,
                 Title = vid.Title,
                 PricePrDay = vid.PricePrDay,
-                Year = vid.Year
+                Year = vid.Year,
+                Genres = vid.Genres
             });
             //Returns the new video.
             return newVid;

@@ -11,6 +11,7 @@ namespace VideoAppBLL.Services
     internal class VideoService : IVideoService
     {
         private VideoConverter conv = new VideoConverter();
+        private GenreConverter gConv = new GenreConverter();
 
         //Interface
         private readonly DALFacade facade;
@@ -37,7 +38,6 @@ namespace VideoAppBLL.Services
                 foreach (var video in videoes)
                 {
                     uow.VideoRepository.Create(conv.Convert(video));
-
                 }
                 uow.Complete();
             }
@@ -64,12 +64,14 @@ namespace VideoAppBLL.Services
                 if (videoFromDB != null)
                 {
                     videoToReturn = conv.Convert(videoFromDB);
+                    List<GenreBO> listOfGenres =
+                        new List<GenreBO>() {gConv.Convert(uow.GenreRepository.Get(videoToReturn.GenreId))};
+                    videoToReturn.Genres = listOfGenres;
                 }
                 else
                 {
                     Console.WriteLine("Can't find the video by the ID");
                 }
-
                 return videoToReturn;
             }
         }
@@ -95,16 +97,17 @@ namespace VideoAppBLL.Services
                 {
                     throw new InvalidOperationException("Video not found.");
                 }
+
+                var videoUpdate = conv.Convert(vid);
                 //If there is show info.
-                videoFromDB.Title = vid.Title;
-                videoFromDB.PricePrDay = vid.PricePrDay;
-                videoFromDB.Year = vid.Year;
+                videoFromDB.Title = videoUpdate.Title;
+                videoFromDB.PricePrDay = videoUpdate.PricePrDay;
+                videoFromDB.Year = videoUpdate.Year;
+                videoFromDB.Genres = videoUpdate.Genres;
                 //Save changes.
                 uow.Complete();
                 return conv.Convert(videoFromDB);
             }
         }
-
-        
     }
 }
