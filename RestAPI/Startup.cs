@@ -53,8 +53,8 @@ namespace RestAPI
                         Title = "Gaurdian of the Galaxzy",
                         PricePrDay = 10,
                         Year = 2015,
-                        GenreId = adventure.Id
-                        //Genres = new List<GenreBO>() { adventure }
+                        //GenreId = adventure.Id
+                        Genres = new List<GenreBO>() { adventure }
                     });
                 var vid2 = facade.VideoService.Create(
                     new VideoBO()
@@ -62,7 +62,8 @@ namespace RestAPI
                         Title = "Gaurdian of the Galaxzy 2",
                         PricePrDay = 20,
                         Year = 2017,
-                        GenreId = drama.Id
+                        //GenreId = drama.Id
+                        Genres = new List<GenreBO>() { drama }
                     });
 
                 // RENTALS

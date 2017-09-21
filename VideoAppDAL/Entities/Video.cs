@@ -16,7 +16,7 @@ namespace VideoAppDAL.Entities
 
         public List<Rental> Rentals { get; set; }
 
-        public List<Genre> Genres { get; set; }
+        public List<VideoGenre> Genres { get; set; }
 
         public int GenreId { get; set; }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using VideoAppDAL.Context;
 using VideoAppDAL.Entities;
 
@@ -25,7 +26,7 @@ namespace VideoAppDAL.Repositories
 
         public List<Video> GetAll()
         {
-            return _context.Videos.ToList();
+            return _context.Videos.Include(v => v.Genres).ThenInclude(vg => vg.Genre).ToList();
         }
 
         public Video Get(int Id)

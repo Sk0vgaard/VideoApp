@@ -29,7 +29,12 @@ namespace VideoAppBLL.Converters
                 Title = vid.Title,
                 PricePrDay = vid.PricePrDay,
                 Year = vid.Year,
-                GenreId = vid.GenreId
+                //GenreId = vid.GenreId,
+                Genres = vid.Genres?.Select(g => new VideoGenre()
+                {
+                    GenreId = g.Id,
+                    VideoId = vid.Id
+                }).ToList()
             };
         }
 
@@ -45,7 +50,13 @@ namespace VideoAppBLL.Converters
                 Title = vid.Title,
                 PricePrDay = vid.PricePrDay,
                 Year = vid.Year,
-                GenreId = vid.GenreId
+                //GenreId = vid.GenreId,
+                Genres = vid.Genres?.Select(g => new GenreBO()
+                {
+                    Id = g.VideoId,
+                    Name = g.Genre?.Name
+                }).ToList()
+
             };
         }
     }
