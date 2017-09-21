@@ -50,20 +50,21 @@ namespace RestAPI
                 var vid1 = facade.VideoService.Create(
                     new VideoBO()
                     {
-                        Title = "Gaurdian of the Galaxzy",
+                        Title = "Gaurdian of the Galaxy",
                         PricePrDay = 10,
                         Year = 2015,
-                        //GenreId = adventure.Id
-                        Genres = new List<GenreBO>() { adventure }
+                        //GenreId = adventure.Id,
+                        GenreIds = new List<int>() { adventure.Id, drama.Id}
                     });
                 var vid2 = facade.VideoService.Create(
                     new VideoBO()
                     {
-                        Title = "Gaurdian of the Galaxzy 2",
+                        Title = "Gaurdian of the Galaxy 2",
                         PricePrDay = 20,
                         Year = 2017,
                         //GenreId = drama.Id
-                        Genres = new List<GenreBO>() { drama }
+                        GenreIds = new List<int>() { drama.Id, adventure.Id }
+
                     });
 
                 // RENTALS

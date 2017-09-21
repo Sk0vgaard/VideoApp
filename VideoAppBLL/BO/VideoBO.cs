@@ -20,6 +20,8 @@ namespace VideoAppBLL.BO
 
         public List<GenreBO> Genres { get; set; }
 
-        public int GenreId { get; set; }
+        //public int GenreId { get; set; }
+
+        public List<int> GenreIds { get; set; }
     }
 }

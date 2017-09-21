@@ -58,21 +58,23 @@ namespace VideoAppBLL.Services
             using (var uow = facade.UnitOfWork)
 
             {
-                var videoFromDB = uow.VideoRepository.Get(Id);
-                VideoBO videoToReturn = null;
+                var videoFromDB = conv.Convert(uow.VideoRepository.Get(Id));
+                //VideoBO videoToReturn = null;
                 //Checks if there is a video with the ID.
-                if (videoFromDB != null)
+                if (videoFromDB.GenreIds != null)
                 {
-                    videoToReturn = conv.Convert(videoFromDB);
-                    List<GenreBO> listOfGenres =
-                        new List<GenreBO>() {gConv.Convert(uow.GenreRepository.Get(videoToReturn.GenreId))};
-                    videoToReturn.Genres = listOfGenres;
+                    //videoFromDB.Genres = videoFromDB.GenreIds
+                    //    .Select(id => gConv.Convert(uow.GenreRepository.Get(id)))
+                    //    .ToList();
+                    videoFromDB.Genres = uow.GenreRepository.GetAllById(videoFromDB.GenreIds)
+                        .Select(g => gConv.Convert(g))
+                        .ToList();
                 }
                 else
                 {
                     Console.WriteLine("Can't find the video by the ID");
                 }
-                return videoToReturn;
+                return videoFromDB;
             }
         }
 

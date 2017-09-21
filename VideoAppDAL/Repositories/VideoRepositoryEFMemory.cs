@@ -26,13 +26,17 @@ namespace VideoAppDAL.Repositories
 
         public List<Video> GetAll()
         {
-            return _context.Videos.Include(v => v.Genres).ThenInclude(vg => vg.Genre).ToList();
+            return _context.Videos.Include(v => v.Genres)
+                //.ThenInclude(vg => vg.Genre)
+                .ToList();
         }
 
         public Video Get(int Id)
         {
             //Returns the first video on the list or the default one.
-            return _context.Videos.FirstOrDefault(v => v.Id == Id);
+            return _context.Videos
+                .Include(v => v.Genres)
+                .FirstOrDefault(v => v.Id == Id);
         }
 
         public Video Delete(int Id)
