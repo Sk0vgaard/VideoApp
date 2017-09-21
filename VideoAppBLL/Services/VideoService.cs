@@ -105,7 +105,23 @@ namespace VideoAppBLL.Services
                 videoFromDB.Title = videoUpdate.Title;
                 videoFromDB.PricePrDay = videoUpdate.PricePrDay;
                 videoFromDB.Year = videoUpdate.Year;
-                videoFromDB.Genres = videoUpdate.Genres;
+
+                //1. Remove all, except the "old" ids we wanna keep (Avoid attached issues)
+                videoFromDB.Genres.RemoveAll(
+                    vg => !videoUpdate.Genres.Exists(
+                        g => g.GenreId == vg.GenreId && 
+                        g.VideoId == vg.VideoId));
+
+                //2. Remove all ids already in database from videoUpdate.
+                videoUpdate.Genres.RemoveAll(
+                    vg => videoFromDB.Genres.Exists(
+                        g => g.GenreId == vg.GenreId &&
+                        g.VideoId == vg.VideoId));
+
+                //3. Add All new videoGenres not yet seen in the DB.
+                videoFromDB.Genres.AddRange(
+                    videoUpdate.Genres);
+
                 //Save changes.
                 uow.Complete();
                 return conv.Convert(videoFromDB);

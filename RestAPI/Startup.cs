@@ -45,6 +45,11 @@ namespace RestAPI
                     {
                         Name = "Adventure"
                     });
+                var thriller = facade.GenreService.Create(
+                    new GenreBO()
+                    {
+                        Name = "Thriller"
+                    });
 
                 // VIDEOES
                 var vid1 = facade.VideoService.Create(
@@ -54,7 +59,7 @@ namespace RestAPI
                         PricePrDay = 10,
                         Year = 2015,
                         //GenreId = adventure.Id,
-                        GenreIds = new List<int>() { adventure.Id, drama.Id}
+                        GenreIds = new List<int>() { adventure.Id, thriller.Id}
                     });
                 var vid2 = facade.VideoService.Create(
                     new VideoBO()
