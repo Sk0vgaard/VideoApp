@@ -32,76 +32,76 @@ namespace RestAPI
             {
                 app.UseDeveloperExceptionPage();
 
-                var facade = new BLLFacade();
+            //    var facade = new BLLFacade();
 
-                // GENRES
-                var drama = facade.GenreService.Create(
-                    new GenreBO()
-                    {
-                        Name = "Drama"
-                    });
-                var adventure = facade.GenreService.Create(
-                    new GenreBO()
-                    {
-                        Name = "Adventure"
-                    });
-                var thriller = facade.GenreService.Create(
-                    new GenreBO()
-                    {
-                        Name = "Thriller"
-                    });
+            //    // GENRES
+            //    var drama = facade.GenreService.Create(
+            //        new GenreBO()
+            //        {
+            //            Name = "Drama"
+            //        });
+            //    var adventure = facade.GenreService.Create(
+            //        new GenreBO()
+            //        {
+            //            Name = "Adventure"
+            //        });
+            //    var thriller = facade.GenreService.Create(
+            //        new GenreBO()
+            //        {
+            //            Name = "Thriller"
+            //        });
 
-                // VIDEOES
-                var vid1 = facade.VideoService.Create(
-                    new VideoBO()
-                    {
-                        Title = "Gaurdian of the Galaxy",
-                        PricePrDay = 10,
-                        Year = 2015,
-                        //GenreId = adventure.Id,
-                        GenreIds = new List<int>() { adventure.Id, thriller.Id}
-                    });
-                var vid2 = facade.VideoService.Create(
-                    new VideoBO()
-                    {
-                        Title = "Gaurdian of the Galaxy 2",
-                        PricePrDay = 20,
-                        Year = 2017,
-                        //GenreId = drama.Id
-                        GenreIds = new List<int>() { drama.Id, adventure.Id }
+            //    // VIDEOES
+            //    var vid1 = facade.VideoService.Create(
+            //        new VideoBO()
+            //        {
+            //            Title = "Gaurdian of the Galaxy",
+            //            PricePrDay = 10,
+            //            Year = 2015,
+            //            //GenreId = adventure.Id,
+            //            GenreIds = new List<int>() { adventure.Id, thriller.Id}
+            //        });
+            //    var vid2 = facade.VideoService.Create(
+            //        new VideoBO()
+            //        {
+            //            Title = "Gaurdian of the Galaxy 2",
+            //            PricePrDay = 20,
+            //            Year = 2017,
+            //            //GenreId = drama.Id
+            //            GenreIds = new List<int>() { drama.Id, adventure.Id }
 
-                    });
+            //        });
 
-                // RENTALS
-                var rental1 = facade.RentalService.Create(
-                    new RentalBO()
-                    {
-                        OrderDate = DateTime.Now,
-                        DeliveryDate = DateTime.Now.AddDays(7),
-                        VideoId = vid1.Id
-                    });
-                var rental2 = facade.RentalService.Create(
-                    new RentalBO()
-                    {
-                        OrderDate = DateTime.Now.AddDays(2),
-                        DeliveryDate = DateTime.Now.AddDays(9),
-                        VideoId = vid2.Id
-                    });
+            //    // RENTALS
+            //    var rental1 = facade.RentalService.Create(
+            //        new RentalBO()
+            //        {
+            //            OrderDate = DateTime.Now,
+            //            DeliveryDate = DateTime.Now.AddDays(7),
+            //            VideoId = vid1.Id
+            //        });
+            //    var rental2 = facade.RentalService.Create(
+            //        new RentalBO()
+            //        {
+            //            OrderDate = DateTime.Now.AddDays(2),
+            //            DeliveryDate = DateTime.Now.AddDays(9),
+            //            VideoId = vid2.Id
+            //        });
 
-                // USERS
-                var user1 = facade.UserService.Create(
-                    new UserBO()
-                    {
-                        Username = "Brugernavn1",
-                        Password = "Password1",
-                        RentalId = rental1.Id
-                    });
-                var user2 = facade.UserService.Create(new UserBO()
-                {
-                    Username = "Brugernavn2",
-                    Password = "Password2",
-                    RentalId = rental2.Id
-                });
+            //    // USERS
+            //    var user1 = facade.UserService.Create(
+            //        new UserBO()
+            //        {
+            //            Username = "Brugernavn1",
+            //            Password = "Password1",
+            //            RentalId = rental1.Id
+            //        });
+            //    var user2 = facade.UserService.Create(new UserBO()
+            //    {
+            //        Username = "Brugernavn2",
+            //        Password = "Password2",
+            //        RentalId = rental2.Id
+            //    });
             }
 
             app.UseMvc();
