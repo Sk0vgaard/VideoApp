@@ -20,6 +20,7 @@ namespace VideoAppDAL.OUW
         public UnitOfWork()
         {
             context = new VideoAppContext();
+            context.Database.EnsureCreated();
             //Creating a repository using the context.
             VideoRepository = new VideoRepositoryEFMemory(context);
             RentalRepository = new RentalRepositoryEFMemory(context);

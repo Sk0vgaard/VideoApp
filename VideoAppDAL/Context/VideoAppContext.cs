@@ -13,8 +13,16 @@ namespace VideoAppDAL.Context
             new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("theDB").Options;
 
         //Options we want in memory
-        public VideoAppContext() : base(options)
+        //public VideoAppContext() : base(options)
+        //{
+        //}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=tcp:easv-cs-skovgaard.database.windows.net,1433;Initial Catalog=VideoRestAPI;Persist Security Info=False;User ID=Skovgaard;Password=Numsefisk1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
