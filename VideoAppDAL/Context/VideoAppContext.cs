@@ -12,6 +12,9 @@ namespace VideoAppDAL.Context
         static DbContextOptions<VideoAppContext> options =
             new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("theDB").Options;
 
+        private readonly string CONFIG_FILE_NAME = "DB.cfg";
+
+
         //Options we want in memory
         //public VideoAppContext() : base(options)
         //{
