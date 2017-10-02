@@ -33,13 +33,12 @@ namespace RestAPI
             services.AddMvc();
             VideoAppContext.ConnectionString = Configuration["secretConnectionString"];
 
-            //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectionString"]));
-            //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            //{
-            //    builder.WithOrigins("http://localhost:4200")
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader();
-            //}));
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             //services.Configure<MvcOptions>(options =>
             //{
