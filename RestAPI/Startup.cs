@@ -24,19 +24,20 @@ namespace RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.WithOrigins("http://localhost:4200")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
-            }));
+            //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            //{
+            //    builder.WithOrigins("http://localhost:4200")
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader();
+            //}));
 
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+            //services.Configure<MvcOptions>(options =>
+            //{
+            //    options.Filters.Add(new RequireHttpsAttribute());
+            //});
         }
 
 
@@ -48,6 +49,10 @@ namespace RestAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //app.UseCors(builder => builder.AllowAnyOrigin());
+            //app.UseCors(builder => builder.WithOrigins("").AllowAnyMethod());
+
             //    var facade = new BLLFacade();
 
             //    // GENRES
@@ -117,7 +122,7 @@ namespace RestAPI
             //        Username = "Brugernavn2",
             //        Password = "Password2",
             //        RentalId = rental2.Id
-            //    });
+            //    });//DB seed.
             
 
             app.UseMvc();
