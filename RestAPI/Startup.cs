@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VideoAppBLL;
@@ -30,15 +32,22 @@ namespace RestAPI
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+            }
             //    var facade = new BLLFacade();
 
             //    // GENRES
@@ -109,7 +118,7 @@ namespace RestAPI
             //        Password = "Password2",
             //        RentalId = rental2.Id
             //    });
-            }
+            
 
             app.UseMvc();
         }
