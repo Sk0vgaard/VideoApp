@@ -7,14 +7,12 @@ using VideoAppDAL.Entities;
 
 namespace VideoAppDAL.Context
 {
-    class VideoAppContext : DbContext
+    public class VideoAppContext : DbContext
     {
         static DbContextOptions<VideoAppContext> options =
             new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("theDB").Options;
 
-        private readonly string CONFIG_FILE_NAME = "DB.cfg";
-
-
+        public static string ConnectionString;
         //Options we want in memory
         //public VideoAppContext() : base(options)
         //{
@@ -24,7 +22,7 @@ namespace VideoAppDAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=tcp:easv-cs-skovgaard.database.windows.net,1433;Initial Catalog=VideoRestAPI;Persist Security Info=False;User ID=Skovgaard;Password=Numsefisk1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer(ConnectionString);
             }
         }
 

@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VideoAppBLL;
 using VideoAppBLL.BO;
+using VideoAppDAL.Context;
 
 
 namespace RestAPI
@@ -17,6 +19,9 @@ namespace RestAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -26,7 +31,9 @@ namespace RestAPI
         {
             services.AddCors();
             services.AddMvc();
+            VideoAppContext.ConnectionString = Configuration["secretConnectionString"];
 
+            //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectionString"]));
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             //{
             //    builder.WithOrigins("http://localhost:4200")
