@@ -63,9 +63,10 @@ namespace VideoRestAPI.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             facade.VideoService.Delete(id);
+            return Ok(true);
         }
     }
 }
