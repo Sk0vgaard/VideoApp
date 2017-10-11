@@ -132,7 +132,7 @@ namespace RestAPI
             //    Username = "Brugernavn2",
             //    Password = "Password2",
             //    RentalId = rental2.Id
-            //});//DB seed.
+            //});//DB seed. 
 
 
             app.UseMvc();
