@@ -61,10 +61,10 @@ namespace RestAPI
             //app.UseCors(builder => builder.WithOrigins("").AllowAnyMethod());
 
             var facade = new BLLFacade();
-            
 
 
-            
+
+
             //// GENRES
             //var drama = facade.GenreService.Create(
             //    new GenreBO()
@@ -89,8 +89,8 @@ namespace RestAPI
             //        Title = "Gaurdian of the Galaxy",
             //        PricePrDay = 10,
             //        Year = 2015,
-            //            //GenreId = adventure.Id,
-            //            GenreIds = new List<int>() { adventure.Id, thriller.Id }
+            //        //GenreId = adventure.Id,
+            //        GenreIds = new List<int>() { adventure.Id, thriller.Id }
             //    });
             //var vid2 = facade.VideoService.Create(
             //    new VideoBO()
@@ -98,8 +98,41 @@ namespace RestAPI
             //        Title = "Gaurdian of the Galaxy 2",
             //        PricePrDay = 20,
             //        Year = 2017,
-            //            //GenreId = drama.Id
-            //            GenreIds = new List<int>() { drama.Id, adventure.Id }
+            //        //GenreId = drama.Id
+            //        GenreIds = new List<int>() { drama.Id, adventure.Id }
+
+            //    });
+
+            //var vid3 = facade.VideoService.Create(
+            //    new VideoBO()
+            //    {
+            //        Title = "Blade Runner 2049",
+            //        PricePrDay = 220,
+            //        Year = 2017,
+            //        //GenreId = drama.Id
+            //        GenreIds = new List<int>() { drama.Id, adventure.Id }
+
+            //    });
+
+            //var vid4 = facade.VideoService.Create(
+            //    new VideoBO()
+            //    {
+            //        Title = "Star Wars: The Last Jedi",
+            //        PricePrDay = 202,
+            //        Year = 2017,
+            //        //GenreId = drama.Id
+            //        GenreIds = new List<int>() { drama.Id, adventure.Id }
+
+            //    });
+
+            //var vid5 = facade.VideoService.Create(
+            //    new VideoBO()
+            //    {
+            //        Title = "Justice League",
+            //        PricePrDay = 201,
+            //        Year = 2017,
+            //        //GenreId = drama.Id
+            //        GenreIds = new List<int>() { drama.Id, adventure.Id }
 
             //    });
 
