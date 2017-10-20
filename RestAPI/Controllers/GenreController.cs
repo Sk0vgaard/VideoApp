@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using VideoAppBLL;
 using VideoAppBLL.BO;
 
 namespace RestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/genres")]
     public class GenreController : Controller
